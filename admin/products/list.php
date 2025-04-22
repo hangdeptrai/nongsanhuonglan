@@ -10,7 +10,7 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="productTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -30,7 +30,7 @@
                             <td><?= $row['category_name'] ?></td>
                             <td><img src="../../assets/admin/img/products/<?= $row['image'] ?>" width=60px ></td>
                             <td><?= $row['name'] ?></td>
-                            <td><?= number_format($row['price'],-3,',',',') ?> VND / <?= $row['unit'] ?></td>
+                            <td><?= number_format($row['price'],-3,',','.') ?> VND / <?= $row['unit'] ?></td>
                             <td><?= $row['qty'] ?></td>
                             <td><?= $row['qty'] > 0 ? 'Còn hàng' : 'Hết hàng' ?></td>
                             <td>

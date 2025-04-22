@@ -37,6 +37,7 @@
     $('.set-bg').each(function () {
         var bg = $(this).data('setbg');
         $(this).css('background-image', 'url(' + bg + ')');
+        $(this).css('background-color', '#f3f6fa');
     });
 
     //Humberger Menu
@@ -179,6 +180,11 @@
     });
     minamount.val('$' + rangeSlider.slider("values", 0));
     maxamount.val('$' + rangeSlider.slider("values", 1));
+
+    /*--------------------------
+        Select
+    ----------------------------*/
+    $("select#sort_price").niceSelect();
 
     /*------------------
 		Single Product

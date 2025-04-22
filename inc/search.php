@@ -1,8 +1,8 @@
 <?php
-    $file = basename(getCurrentUrl(), '.php');
+    $file = basename($_SERVER['PHP_SELF'], '.php');
 ?>
 <!-- Hero Section Begin -->
-<section class="hero <?= ($file !== 'index' && $file !== 'webbannongsan') ? 'hero-normal' : '' ?>">
+<section class="hero<?= ($file !== 'index') ? ' hero-normal' : '' ?>">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -31,7 +31,7 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>0123 456 789</h5>
+                            <h5>033 663 2228</h5>
                             <span>Hỗ trợ 24/7</span>
                         </div>
                     </div>

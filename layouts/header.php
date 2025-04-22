@@ -1,6 +1,7 @@
 <?php 
     include 'inc/connect.php';
     include 'helpers/helper.php';
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
     session_start();
     $baseFolder = dirname(__FILE__, 3);
 ?>
@@ -9,14 +10,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="description" content="Hương Lan - Thực phẩm sạch">
+    <meta name="keywords" content="Huong Lan, thuc pham, thuc pham sach, thuc pham Huong Lan">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani</title>
+    <title>Hương Lan - Thực phẩm sạch</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 
     <!-- Font Awaesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
@@ -25,10 +29,13 @@
     <link rel="stylesheet" href="assets/client/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="assets/client/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="assets/client/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="assets/client/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="assets/client/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="assets/client/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="assets/client/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="assets/client/css/style.css" type="text/css">
+    <link rel="stylesheet" href="assets/client/css/comment.css" type="text/css">
+    <link rel="stylesheet" href="assets/client/css/dataTables.dataTables.css">
 </head>
 
 <body>
@@ -56,7 +63,9 @@
                     <div>Xin chào, <?= $_SESSION['user']['name'] ?></div>
                     <span class="arrow_carrot-down"></span>
                     <ul>
-                        <li><a href="order.php">Đơn hàng của tôi</a></li>
+                        <li><a href="profile.php">Thông tin cá nhân</a></li>
+                        <li><a href="change-password.php">Đổi mật khẩu</a></li>
+                        <li><a href="orders.php">Đơn hàng của tôi</a></li>
                         <li><a href="logout.php">Đăng xuất</a></li>
                     </ul>
                 </div>
@@ -80,7 +89,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> ogani@gmail.com</li>
+                                <li><i class="fa fa-envelope"></i> nguyenduchoanghd@gmail.com</li>
+                                <li><i class="fa fa-phone"></i> 033 663 2228</li>
                             </ul>
                         </div>
                     </div>
@@ -98,7 +108,9 @@
                                     <div>Xin chào, <?= $_SESSION['user']['name'] ?></div>
                                     <span class="arrow_carrot-down"></span>
                                     <ul>
-                                        <li><a href="my-order.php">Đơn hàng của tôi</a></li>
+                                        <li><a href="profile.php">Thông tin cá nhân</a></li>
+                                        <li><a href="change-password.php">Đổi mật khẩu</a></li>
+                                        <li><a href="orders.php">Đơn hàng của tôi</a></li>
                                         <li><a href="logout.php">Đăng xuất</a></li>
                                     </ul>
                                 </div>
@@ -136,7 +148,7 @@
                                 return $total;
                             }, 
                             0
-                        ),-3,'.','.') : 0 ?> VND</span></div>
+                        ),-3,',','.') : 0 ?> VND</span></div>
                     </div>
                 </div>
             </div>

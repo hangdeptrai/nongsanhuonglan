@@ -24,26 +24,26 @@
                                 <?php foreach ($_SESSION['shopping_cart'] as $row): ?>
                                     <tr>
                                         <td class="shoping__cart__item">
-                                            <img src="assets/admin/img/products/<?= $row['item_image'] ?>" alt="<?= $row['item_name'] ?>" width="100">
-                                            <h5><?= $row['item_name'] ?></h5>
+                                            <a href="product-details.php?id=<?= $row['item_id'] ?>" style="color: #1c1c1c;"><img src="assets/admin/img/products/<?= $row['item_image'] ?>" alt="<?= $row['item_name'] ?>" width="100">
+                                            <h5><?= $row['item_name'] ?></h5></a>
                                         </td>
                                         <td class="shoping__cart__price">
-                                            <?= number_format($row['item_price'],-3,',',',') ?> VND
+                                            <?= number_format($row['item_price'],-3,',','.') ?> VND
                                         </td>
                                         <td class="shoping__cart__quantity">
                                             <div class="quantity">
                                                 <div class="pro-qty">
-                                                    <a href="handles/decrease-cart.php?id=<?= $row['item_id'] ?>"><span class="dec qtybtn">-</span></a>
+                                                    <span class="dec qtybtn" data-id="<?= $row['item_id'] ?>">-</span>
                                                     <input type="text" value="<?= $row['item_qty'] ?>" readonly>
-                                                    <a href="handles/increase-cart.php?id=<?= $row['item_id'] ?>"><span class="inc qtybtn">+</span></a>
+                                                    <span class="inc qtybtn" data-id="<?= $row['item_id'] ?>">+</span>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="shoping__cart__total">
-                                            <?= number_format($row['item_price'] * $row['item_qty'],-3,',',',') ?> VND
+                                            <?= number_format($row['item_price'] * $row['item_qty'],-3,',','.') ?> VND
                                         </td>
                                         <td class="shoping__cart__item__close">
-                                            <a href="handles/delete-cart.php?id=<?= $row['item_id'] ?>" onclick="return confirm('Bạn có muốn xóa sản phẩm này ?')"><span class="icon_close"></span></a>
+                                            <span class="icon_close del-item" data-id="<?= $row['item_id'] ?>"></span>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -60,7 +60,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="shoping__cart__btns">
-                    <a href="product-grid.php" class="btn btn-primary">Tiếp tục mua hàng</a>
+                    <a href="product-grid.php" class="site-btn">Tiếp tục mua hàng</a>
                 </div>
             </div>
             <?php if (isset($_SESSION['shopping_cart']) && count($_SESSION['shopping_cart']) > 0): ?>
@@ -70,7 +70,7 @@
                     <div class="shoping__checkout">
                         <h5>Giỏ hàng</h5>
                         <ul>
-                            <li>Tổng tiền <span>
+                            <li>Tổng tiền <span id="total_price">
                                 <?= 
                                     number_format(array_reduce($_SESSION['shopping_cart'], 
                                     function($total, $item) {
@@ -79,7 +79,7 @@
                                         return $total;
                                     }, 
                                     0
-                                    ),-3,'.','.')
+                                    ),-3,',','.')
                                 ?> VND
                             </span></li>
                         </ul>
